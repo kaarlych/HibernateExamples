@@ -1,7 +1,9 @@
 package pl.zajavka;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "person")
 public class Person {
