@@ -19,5 +19,12 @@ public class Main {
         // create schema users;
         // schemat sluzy do lepszej organizacji danych w bazie danych
 
+        // indeks - wskaznik do danych w tabeli
+        // przyspiesza zapytanie d bazy danych, przyspiesza dostep
+        // create index idx_car_brand on car(brand, model)
+        // indekswanie kolumn po ktorych najczesciej wyszukujemy typu email dla uzytkownika
+        // indexy sa automatycznie robione dla kluczy glownych
+        //
+
     }
 }
