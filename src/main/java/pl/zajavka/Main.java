@@ -24,7 +24,13 @@ public class Main {
         // create index idx_car_brand on car(brand, model)
         // indekswanie kolumn po ktorych najczesciej wyszukujemy typu email dla uzytkownika
         // indexy sa automatycznie robione dla kluczy glownych
-        //
+
+        // view - widok - obiekt definiwany przez okreslne zapytanie
+        // okno na dane/wirtualna tabela
+        // widoki sluza tylko do odczytu, nie zajmuja dodatkoweg miejsca na dysku
+        // create view person_view as select id, namespace from person p where age < 10
+        // wada moze byc taka ze widok nie przechowuje danych
+        // potrafi zuzyc wiele zasbow
 
     }
 }
