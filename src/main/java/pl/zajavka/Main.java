@@ -3,34 +3,24 @@ package pl.zajavka;
 public class Main {
     public static void main(String[] args) {
 
-        // database objects:
-        // tabele
-        // constraints
-        // indeksy
-        // widoki
+        // HIBERNATE
+        // powstal w 2001 roku, Gevin King
+        // wykracza poza standard JPA
+        // narzedzie ORM open source
+        // nowy poziom abstrakcji ktory obudowuje JDBC
+        // ulatwia utrzymanie aplikacji - mniej kodu
+        // poprawia wydajnosc aplikacji miedzy innymi przez mechanizm cashowania
+        // pozwala na pewna niezaleznosc od database management systemu - zna sqlki danego silnika bazodanowego
 
-        // database schema - w obrebie bazy danych mozna tworzyc schematy
-        // schemat w bazie danych jest przestrzenia, ktora zawiera tabele funkcje procedury etc
-        // select * from other.employee
-        // public jest schematem domyslnym
-        // schmaty pomagaja nam lepiej pogrupowac dane w logiczne grupy
+        // Hibernate vs JDBC
+        // Hibernate jest odpowiedzialny za mapowanie obiektowo-relacyjne
+        // JDBC to tylko zestaw interfejsow do polaczenia sie z baza danych w Javie
 
-        // create schema company;
-        // create schema users;
-        // schemat sluzy do lepszej organizacji danych w bazie danych
-
-        // indeks - wskaznik do danych w tabeli
-        // przyspiesza zapytanie d bazy danych, przyspiesza dostep
-        // create index idx_car_brand on car(brand, model)
-        // indekswanie kolumn po ktorych najczesciej wyszukujemy typu email dla uzytkownika
-        // indexy sa automatycznie robione dla kluczy glownych
-
-        // view - widok - obiekt definiwany przez okreslne zapytanie
-        // okno na dane/wirtualna tabela
-        // widoki sluza tylko do odczytu, nie zajmuja dodatkoweg miejsca na dysku
-        // create view person_view as select id, namespace from person p where age < 10
-        // wada moze byc taka ze widok nie przechowuje danych
-        // potrafi zuzyc wiele zasbow
-
+        // Hibernate vs JPA
+        // JPA jest specyfikacja dla dostawcow warstwy persystencji
+        // Hibernate jest implementacja specyfikacji JPA
+        // Hibernate to tak naprawde JPA z implementacja hibernate
+        // jezeli uzywamy JPA to w kazdym mozliwym czasie teretycznie powinnismy moc zmienic implementacje
+        
     }
 }
