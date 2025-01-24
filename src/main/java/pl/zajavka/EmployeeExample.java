@@ -7,6 +7,7 @@ public class EmployeeExample {
     public static void main(String[] args) {
 
         // CRUD - Create, Read, Update, Delete
+        // some note
         EmployeeRepository employeeRepository = new EmployeeRepository();
 
         employeeRepository.deleteAll();
