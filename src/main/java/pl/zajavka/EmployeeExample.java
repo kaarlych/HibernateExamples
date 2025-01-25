@@ -6,8 +6,21 @@ public class EmployeeExample {
 
     public static void main(String[] args) {
 
-        // CRUD - Create, Read, Update, Delete
-        // some note
+        // Relacje
+        // one to one = rekord w jednej encji jest powiazany dokladnie z jednym rekordem w jednej encji
+        // jeden czlowiek moze miec tylko jedno serce i serce moze miec tylko jednego czlowieka
+        // jeden kraj ma jedna stolice etc...
+        // one to many
+        // kraj ma wiele miast ale miasto moze znajdowac sie w jednym kraju
+        // mieszkanie moze miec wiele lazienek ale lazienka moze byc tylko w jednym mieszkaniu
+        // many to many
+        // produkt moze byc zakupiony przez wielu konsumentow i wiele konsumentow moze kupic produkt
+        // na jednej plycie moze byc wiele filmow DVD i jeden film DVD moze byc na wielu plytach
+
+        // unidirectional vs bidirectional
+        // bidirectional sa preferowane
+
+
         EmployeeRepository employeeRepository = new EmployeeRepository();
 
         employeeRepository.deleteAll();
