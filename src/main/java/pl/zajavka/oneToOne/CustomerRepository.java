@@ -1,4 +1,6 @@
-package pl.zajavka;
+package pl.zajavka.oneToOne;
+
+import pl.zajavka.HibernateUtil;
 
 import java.util.List;
 import java.util.Objects;

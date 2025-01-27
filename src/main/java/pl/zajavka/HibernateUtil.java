@@ -7,6 +7,10 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
+import pl.zajavka.oneToMany.Owner;
+import pl.zajavka.oneToMany.Pet;
+import pl.zajavka.oneToOne.Address;
+import pl.zajavka.oneToOne.Customer;
 
 import java.util.Map;
 
@@ -34,6 +38,8 @@ public class HibernateUtil {
             Metadata metadata = new MetadataSources(serviceRegistry)
                     .addAnnotatedClass(Customer.class)
                     .addAnnotatedClass(Address.class)
+                    .addAnnotatedClass(Owner.class)
+                    .addAnnotatedClass(Pet.class)
                     .getMetadataBuilder()
                     .build();
 
@@ -52,7 +58,7 @@ public class HibernateUtil {
         }
     }
 
-    static Session getSession() {
+    public static Session getSession() {
         try {
             return sessionFactory.openSession();
         } catch (Exception e) {

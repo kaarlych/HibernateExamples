@@ -1,4 +1,6 @@
-package pl.zajavka;
+package pl.zajavka.oneToOne;
+
+import pl.zajavka.HibernateUtil;
 
 public class ExampleRunner {
     public static void main(String[] args) {
