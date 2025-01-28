@@ -1,7 +1,5 @@
 package pl.zajavka.oneToMany;
 
-import pl.zajavka.oneToOne.Customer;
-
 public class ExampleData {
 
     static Owner someOwner1() {

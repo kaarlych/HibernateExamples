@@ -50,7 +50,7 @@ public class HibernateUtil {
         }
     }
 
-    static void closeSessionFactory() {
+    public static void closeSessionFactory() {
         try {
             sessionFactory.close();
         } catch (Exception e) {

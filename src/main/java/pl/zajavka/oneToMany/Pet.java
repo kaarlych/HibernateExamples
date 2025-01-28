@@ -5,6 +5,7 @@ import lombok.*;
 
 @Getter
 @Setter
+@ToString(exclude = "owner")
 @Entity
 @Builder
 @NoArgsConstructor

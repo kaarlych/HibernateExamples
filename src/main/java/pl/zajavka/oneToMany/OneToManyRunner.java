@@ -1,5 +1,7 @@
 package pl.zajavka.oneToMany;
 
+import pl.zajavka.HibernateUtil;
+
 import java.util.Set;
 
 public class OneToManyRunner {
@@ -23,7 +25,19 @@ public class OneToManyRunner {
         ownerRepository.listOwners()
                 .forEach(owner -> System.out.println("###Owner listing: " + owner));
 
+//        System.out.println("###Owner1 " + ownerRepository.getOwner(owner1.getId()));
+//        System.out.println("###Owner2 " + ownerRepository.getOwner(owner2.getId()));
+//
+//        Pet newPet = Pet.builder().name("Drapek").breed(Breed.MONKEY).owner(owner1).build();
+//        ownerRepository.updateOwner(owner1.getId(), newPet);
+//        System.out.println("###Owner1 after update: " + ownerRepository.getOwner(owner1.getId()));
+//        ownerRepository.listOwners()
+//                .forEach(owner -> System.out.println("###Owner listing: " + owner));
+//        ownerRepository.deleteOwner(owner2);
+//        ownerRepository.listOwners()
+//                .forEach(owner -> System.out.println("###Owner listing: " + owner));
 
+        HibernateUtil.closeSessionFactory();
 
     }
 }
