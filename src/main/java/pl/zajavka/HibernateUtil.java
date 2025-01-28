@@ -7,6 +7,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
+import pl.zajavka.manyToMany.Employee;
+import pl.zajavka.manyToMany.Project;
 import pl.zajavka.oneToMany.Owner;
 import pl.zajavka.oneToMany.Pet;
 import pl.zajavka.oneToOne.Address;
@@ -27,6 +29,8 @@ public class HibernateUtil {
             Map.entry(Environment.FORMAT_SQL, true)
     );
 
+    // junction table
+
     private static SessionFactory sessionFactory = loadSessionFactory();
 
     private static SessionFactory loadSessionFactory() {
@@ -40,6 +44,8 @@ public class HibernateUtil {
                     .addAnnotatedClass(Address.class)
                     .addAnnotatedClass(Owner.class)
                     .addAnnotatedClass(Pet.class)
+                    .addAnnotatedClass(Employee.class)
+                    .addAnnotatedClass(Project.class)
                     .getMetadataBuilder()
                     .build();
 
