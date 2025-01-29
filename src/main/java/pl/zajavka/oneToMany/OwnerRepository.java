@@ -15,11 +15,13 @@ public class OwnerRepository {
             if (Objects.isNull(session)) {
                 throw new RuntimeException("Session is null");
             }
+            System.out.println("###BEFORE INSERT OWNER\n----------------------------");
             session.beginTransaction();
             owner.setPets(pets);
             pets.forEach(pet -> pet.setOwner(owner));
             session.persist(owner);
             session.getTransaction().commit();
+            System.out.println("----------------------------------\n###AFTER INSERT OWNER");
             return owner;
         }
     }

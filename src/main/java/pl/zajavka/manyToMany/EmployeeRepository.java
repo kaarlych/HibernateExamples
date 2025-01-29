@@ -13,9 +13,11 @@ public class EmployeeRepository {
             if (session == null) {
                 throw new RuntimeException("Session is null");
             }
+            System.out.println("###BEFORE INSERT EMPLOYEES\n----------------------------");
             session.beginTransaction();
             employees.forEach(session::persist);
             session.getTransaction().commit();
+            System.out.println("----------------------------------\n###AFTER INSERT EMPLOYEES");
             return employees;
         }
     }
@@ -59,9 +61,11 @@ public class EmployeeRepository {
             if (session == null) {
                 throw new RuntimeException("Session is null");
             }
+            System.out.println("###BEFORE DELETE EMPLOYEE\n----------------------------");
             session.beginTransaction();
             session.remove(session.find(Employee.class, employee.getEmployeeId()));
             session.getTransaction().commit();
+            System.out.println("----------------------------------\n###AFTER DELETE EMPLOYEE");
         }
     }
 

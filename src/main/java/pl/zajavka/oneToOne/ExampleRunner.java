@@ -9,13 +9,13 @@ public class ExampleRunner {
         customerRepository.deleteAll();
 
         Customer customer1 = customerRepository.insertCustomer(ExampleData.someCustomer1());
-        Customer customer2 = customerRepository.insertCustomer(ExampleData.someCustomer2());
+//        Customer customer2 = customerRepository.insertCustomer(ExampleData.someCustomer2());
 
-        customerRepository.listCustomers()
-                .forEach(customer -> System.out.println("###Customer listing: " + customer));
+//        customerRepository.listCustomers()
+//                .forEach(customer -> System.out.println("###Customer listing: " + customer));
 
         System.out.println("###Customer1: " + customerRepository.getCustomer(customer1.getId()));
-        System.out.println("###Customer2: " + customerRepository.getCustomer(customer2.getId()));
+//        System.out.println("###Customer2: " + customerRepository.getCustomer(customer2.getId()));
 
 //        Address newAddress = Address.builder()
 //                .country("Poland")

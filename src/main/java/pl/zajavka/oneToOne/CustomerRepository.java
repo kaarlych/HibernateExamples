@@ -13,9 +13,11 @@ public class CustomerRepository {
             if (Objects.isNull(session)) {
                 throw new RuntimeException("Session is null");
             }
+            System.out.println("###BEFORE INSERT CUSTOMER\n----------------------------");
             session.beginTransaction();
             session.persist(customer);
             session.getTransaction().commit();
+            System.out.println("----------------------------------\n###AFTER INSERT CUSTOMER");
             return customer;
         }
     }

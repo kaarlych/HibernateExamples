@@ -29,7 +29,7 @@ public class Address {
     @Column(name = "address")
     private String address;
 
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "address", cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "address", cascade = CascadeType.ALL)
     private Customer customer;
 
 
