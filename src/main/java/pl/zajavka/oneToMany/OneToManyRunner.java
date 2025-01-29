@@ -17,15 +17,15 @@ public class OneToManyRunner {
                 Set.of(ExampleData.somePet1(), ExampleData.somePet2())
         );
 
-        Owner owner2 = ownerRepository.insertData(
-                ExampleData.someOwner2(),
-                Set.of(ExampleData.somePet3(), ExampleData.somePet4())
-        );
+//        Owner owner2 = ownerRepository.insertData(
+//                ExampleData.someOwner2(),
+//                Set.of(ExampleData.somePet3(), ExampleData.somePet4())
+//        );
 
-        ownerRepository.listOwners()
-                .forEach(owner -> System.out.println("###Owner listing: " + owner));
+//        ownerRepository.listOwners()
+//                .forEach(owner -> System.out.println("###Owner listing: " + owner));
 
-//        System.out.println("###Owner1 " + ownerRepository.getOwner(owner1.getId()));
+        System.out.println("###Owner1 " +  ownerRepository.getOwner(owner1.getId()));
 //        System.out.println("###Owner2 " + ownerRepository.getOwner(owner2.getId()));
 //
 //        Pet newPet = Pet.builder().name("Drapek").breed(Breed.MONKEY).owner(owner1).build();

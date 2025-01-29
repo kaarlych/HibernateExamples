@@ -42,7 +42,13 @@ public class OwnerRepository {
             if (Objects.isNull(session)) {
                 throw new RuntimeException("Session is null");
             }
-            return Optional.ofNullable(session.find(Owner.class, ownerId));
+            System.out.println("###BEFORE GET OWNER\n----------------------------");
+            Owner owner = session.find(Owner.class, ownerId);
+            System.out.println("----------------------------------\n###AFTER GET OWNER");
+            System.out.println("###BEFORE GET PETS\n----------------------------");
+            System.out.println(owner.getPets());
+            System.out.println("----------------------------------\n###AFTER GET PETS");
+            return Optional.of(owner);
         }
     }
 
@@ -74,10 +80,12 @@ public class OwnerRepository {
             if (Objects.isNull(session)) {
                 throw new RuntimeException("Session is null");
             }
+            System.out.println("###BEFORE DELETE ALL\n----------------------------" );
             session.beginTransaction();
             String query = "SELECT owner FROM Owner owner";
             session.createQuery(query, Owner.class).getResultList().forEach(session::remove);
             session.getTransaction().commit();
+            System.out.println("----------------------------------\n###AFTER DELETE ALL");
         }
     }
 }
