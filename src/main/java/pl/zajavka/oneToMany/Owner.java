@@ -31,6 +31,10 @@ public class Owner {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private Set<Pet> pets;
+
+    public void removePet(final Pet pet) {
+        pets.remove(pet);
+    }
 }

@@ -82,12 +82,28 @@ public class OwnerRepository {
             if (Objects.isNull(session)) {
                 throw new RuntimeException("Session is null");
             }
-            System.out.println("###BEFORE DELETE ALL\n----------------------------" );
+            System.out.println("###BEFORE DELETE ALL\n----------------------------");
             session.beginTransaction();
             String query = "SELECT owner FROM Owner owner";
             session.createQuery(query, Owner.class).getResultList().forEach(session::remove);
             session.getTransaction().commit();
             System.out.println("----------------------------------\n###AFTER DELETE ALL");
+        }
+    }
+
+    public void orphanRemovalExample(final Integer ownerId) {
+        try (Session session = HibernateUtil.getSession()) {
+            if (Objects.isNull(session)) {
+                throw new RuntimeException("Session is null");
+            }
+            System.out.println("###BEFORE ORPHAN REMOVAL\n----------------------------");
+            session.beginTransaction();
+            Owner owner = session.find(Owner.class, ownerId);
+            Pet petToRemove = owner.getPets().stream().findAny().orElseThrow();
+            owner.removePet(petToRemove);
+            session.merge(owner);
+            session.getTransaction().commit();
+            System.out.println("----------------------------------\n###AFTER ORPHAN REMOVAL");
         }
     }
 }

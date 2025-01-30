@@ -33,7 +33,7 @@ public class OneToManyRunner {
 //        System.out.println("###Owner1 after update: " + ownerRepository.getOwner(owner1.getId()));
 //        ownerRepository.listOwners()
 //                .forEach(owner -> System.out.println("###Owner listing: " + owner));
-//        ownerRepository.deleteOwner(owner2);
+        ownerRepository.orphanRemovalExample(owner1.getId());
 //        ownerRepository.listOwners()
 //                .forEach(owner -> System.out.println("###Owner listing: " + owner));
 
