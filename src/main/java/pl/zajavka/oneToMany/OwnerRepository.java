@@ -1,5 +1,8 @@
 package pl.zajavka.oneToMany;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 import org.hibernate.Session;
 import pl.zajavka.HibernateUtil;
 
@@ -105,5 +108,69 @@ public class OwnerRepository {
             session.getTransaction().commit();
             System.out.println("----------------------------------\n###AFTER ORPHAN REMOVAL");
         }
+    }
+
+    int insertHQL() {
+        EntityManager entityManager = null;
+        EntityTransaction transaction = null;
+        int result;
+        try {
+            entityManager = HibernateUtil.getSession();
+            if (Objects.isNull(entityManager)) {
+                throw new RuntimeException("EntityManager is null");
+            }
+            transaction = entityManager.getTransaction();
+            transaction.begin();
+            String hql = """
+                    INSERT Owner (name, surname, phone, email)
+                    VALUES ('Romek', 'Zabawniacha', '+48 513 435 088', 'romek@zajavka.pl')
+                    """;
+            Query query = entityManager.createQuery(hql);
+            result = query.executeUpdate();
+            transaction.commit();
+            entityManager.close();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw e;
+        } finally {
+            if (Objects.nonNull(transaction) && transaction.isActive()) {
+                entityManager.close();
+            }
+        }
+        return result;
+    }
+
+    int updateHQL() {
+        EntityManager entityManager = null;
+        EntityTransaction transaction = null;
+        int result;
+        try {
+            entityManager = HibernateUtil.getSession();
+            if (Objects.isNull(entityManager)) {
+                throw new RuntimeException("EntityManager is null");
+            }
+            transaction = entityManager.getTransaction();
+            transaction.begin();
+            String hql = """
+                    INSERT Owner (name, surname, phone, email)
+                    VALUES ('Romek', 'Zabawniacha', '+48 513 435 088', 'romek@zajavka.pl')
+                    """;
+            Query query = entityManager.createQuery(hql);
+            result = query.executeUpdate();
+            transaction.commit();
+            entityManager.close();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw e;
+        } finally {
+            if (Objects.nonNull(transaction) && transaction.isActive()) {
+                entityManager.close();
+            }
+        }
+        return result;
     }
 }

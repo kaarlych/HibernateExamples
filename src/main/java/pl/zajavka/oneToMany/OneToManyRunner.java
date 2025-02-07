@@ -10,22 +10,26 @@ public class OneToManyRunner {
 
         OwnerRepository ownerRepository = new OwnerRepository();
 
-        ownerRepository.deleteAll();
+        ownerRepository.insertHQL();
 
-        Owner owner1 = ownerRepository.insertData(
-                ExampleData.someOwner1(),
-                Set.of(ExampleData.somePet1(), ExampleData.somePet2())
-        );
+        HibernateUtil.closeSessionFactory();
 
+//        ownerRepository.deleteAll();
+
+//        Owner owner1 = ownerRepository.insertData(
+//                ExampleData.someOwner1(),
+//                Set.of(ExampleData.somePet1(), ExampleData.somePet2())
+//        );
+//
 //        Owner owner2 = ownerRepository.insertData(
 //                ExampleData.someOwner2(),
 //                Set.of(ExampleData.somePet3(), ExampleData.somePet4())
 //        );
-
+//
 //        ownerRepository.listOwners()
 //                .forEach(owner -> System.out.println("###Owner listing: " + owner));
-
-        System.out.println("###Owner1 " +  ownerRepository.getOwner(owner1.getId()));
+//
+//        System.out.println("###Owner1 " +  ownerRepository.getOwner(owner1.getId()));
 //        System.out.println("###Owner2 " + ownerRepository.getOwner(owner2.getId()));
 //
 //        Pet newPet = Pet.builder().name("Drapek").breed(Breed.MONKEY).owner(owner1).build();
@@ -33,11 +37,11 @@ public class OneToManyRunner {
 //        System.out.println("###Owner1 after update: " + ownerRepository.getOwner(owner1.getId()));
 //        ownerRepository.listOwners()
 //                .forEach(owner -> System.out.println("###Owner listing: " + owner));
-        ownerRepository.orphanRemovalExample(owner1.getId());
+//        ownerRepository.orphanRemovalExample(owner1.getId());
 //        ownerRepository.listOwners()
 //                .forEach(owner -> System.out.println("###Owner listing: " + owner));
-
-        HibernateUtil.closeSessionFactory();
+//
+//        HibernateUtil.closeSessionFactory();
 
     }
 }
