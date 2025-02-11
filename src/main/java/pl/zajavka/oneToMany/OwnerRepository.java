@@ -29,13 +29,13 @@ public class OwnerRepository {
         }
     }
 
-    List<Owner> listOwners() {
+    List<Owner> findAll() {
         try (Session session = HibernateUtil.getSession()) {
             if (Objects.isNull(session)) {
                 throw new RuntimeException("Session is null");
             }
             session.beginTransaction();
-            String query = "SELECT owner FROM Owner owner";
+            String query = "FROM Owner";
             List<Owner> owners = session.createQuery(query, Owner.class).getResultList();
             session.getTransaction().commit();
             return owners;
@@ -211,5 +211,52 @@ public class OwnerRepository {
             }
         }
         return result;
+    }
+
+    List<Owner> selectExample1() {
+        try (Session session = HibernateUtil.getSession()) {
+            if (Objects.isNull(session)) {
+                throw new RuntimeException("Session is null");
+            }
+            session.beginTransaction();
+            String query = "FROM Owner";
+            List<Owner> owners = session.createQuery(query, Owner.class).getResultList();
+            session.getTransaction().commit();
+            return owners;
+        }
+    }
+
+    List<OwnerTemp> selectExample2() {
+        try (Session session = HibernateUtil.getSession()) {
+            if (Objects.isNull(session)) {
+                throw new RuntimeException("Session is null");
+            }
+            session.beginTransaction();
+
+            String selectExample2 = "SELECT new pl.zajavka.oneToMany.OwnerTemp(ow.id, ow.name) FROM Owner ow";
+            List<OwnerTemp> resultList = session.createQuery(selectExample2, OwnerTemp.class).getResultList();
+
+            session.getTransaction().commit();
+            return resultList;
+        }
+    }
+
+    List<Owner> selectExample3() {
+        try (Session session = HibernateUtil.getSession()) {
+            if (Objects.isNull(session)) {
+                throw new RuntimeException("Session is null");
+            }
+            session.beginTransaction();
+
+            String selectExample3 = """
+                    SELECT ow FROM Owner ow WHERE ow.email = :email
+                    """;
+            List<Owner> resultList = session.createQuery(selectExample3, Owner.class)
+                    .setParameter("email", "stefan@zajavka.pl")
+                    .getResultList();
+
+            session.getTransaction().commit();
+            return resultList;
+        }
     }
 }

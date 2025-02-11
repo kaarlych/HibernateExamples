@@ -2,7 +2,7 @@ package pl.zajavka.oneToMany;
 
 import pl.zajavka.HibernateUtil;
 
-import java.util.Set;
+import java.util.Arrays;
 
 public class OneToManyRunner {
 
@@ -10,7 +10,8 @@ public class OneToManyRunner {
 
         OwnerRepository ownerRepository = new OwnerRepository();
 
-        ownerRepository.deleteHQL("romekziomek@zajavka.pl");
+        ownerRepository.selectExample2()
+                .forEach(owner -> System.out.println("###Entity: " + owner));
 
         HibernateUtil.closeSessionFactory();
 

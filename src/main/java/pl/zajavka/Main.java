@@ -20,5 +20,7 @@ public class Main {
         // Criteria API -
         // Native Query
         // Stored Procedures
+
+        // DTO - Data Transfer objects
     }
 }

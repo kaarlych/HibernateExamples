@@ -7,6 +7,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@ToString(exclude = "pets")
 @Entity
 @Builder
 @NoArgsConstructor
@@ -31,7 +32,7 @@ public class Owner {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner", cascade = CascadeType.ALL)
     private Set<Pet> pets;
 
     public void removePet(final Pet pet) {

@@ -22,13 +22,13 @@ public class CustomerRepository {
         }
     }
 
-    List<Customer> listCustomers() {
+    List<Customer> findAllCustomers() {
         try (var session = HibernateUtil.getSession()) {
             if (Objects.isNull(session)) {
                 throw new RuntimeException("Session is null");
             }
             session.beginTransaction();
-            String query = "SELECT cust FROM Customer cust";
+            String query = "FROM Customer";
             List<Customer> customers = session.createQuery(query, Customer.class).getResultList();
             session.getTransaction().commit();
             return customers;
