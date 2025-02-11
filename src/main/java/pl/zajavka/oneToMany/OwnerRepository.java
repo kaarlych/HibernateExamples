@@ -178,4 +178,38 @@ public class OwnerRepository {
         }
         return result;
     }
+
+    int deleteHQL(final String email) {
+        EntityManager entityManager = null;
+        EntityTransaction transaction = null;
+        int result;
+        try {
+            entityManager = HibernateUtil.getSession();
+            if (Objects.isNull(entityManager)) {
+                throw new RuntimeException("EntityManager is null");
+            }
+            transaction = entityManager.getTransaction();
+            transaction.begin();
+            String hql = """
+                    DELETE FROM Owner ow
+                    WHERE ow.email = :email
+                    """;
+            Query query = entityManager.createQuery(hql)
+                    .setParameter("email", email);
+
+            result = query.executeUpdate();
+            transaction.commit();
+            entityManager.close();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw e;
+        } finally {
+            if (Objects.nonNull(transaction) && transaction.isActive()) {
+                entityManager.close();
+            }
+        }
+        return result;
+    }
 }

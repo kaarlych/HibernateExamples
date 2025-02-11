@@ -10,7 +10,7 @@ public class OneToManyRunner {
 
         OwnerRepository ownerRepository = new OwnerRepository();
 
-        ownerRepository.updateHQL("romek@zajavka.pl", "+48 000 111 222", "romekziomek@zajavka.pl");
+        ownerRepository.deleteHQL("romekziomek@zajavka.pl");
 
         HibernateUtil.closeSessionFactory();
 
