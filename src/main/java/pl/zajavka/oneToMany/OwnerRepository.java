@@ -142,7 +142,7 @@ public class OwnerRepository {
         return result;
     }
 
-    int updateHQL() {
+    int updateHQL(final String oldEmail, final String newPhone, final String newEmail) {
         EntityManager entityManager = null;
         EntityTransaction transaction = null;
         int result;
@@ -154,10 +154,15 @@ public class OwnerRepository {
             transaction = entityManager.getTransaction();
             transaction.begin();
             String hql = """
-                    INSERT Owner (name, surname, phone, email)
-                    VALUES ('Romek', 'Zabawniacha', '+48 513 435 088', 'romek@zajavka.pl')
+                    UPDATE Owner ow
+                    SET ow.phone = :newPhone, ow.email = :newEmail
+                    WHERE ow.email = :oldEmail
                     """;
-            Query query = entityManager.createQuery(hql);
+            Query query = entityManager.createQuery(hql)
+                    .setParameter("oldEmail", oldEmail)
+                    .setParameter("newPhone", newPhone)
+                    .setParameter("newEmail", newEmail);
+
             result = query.executeUpdate();
             transaction.commit();
             entityManager.close();
