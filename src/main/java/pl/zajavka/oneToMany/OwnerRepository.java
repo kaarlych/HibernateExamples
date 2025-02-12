@@ -249,10 +249,47 @@ public class OwnerRepository {
             session.beginTransaction();
 
             String selectExample3 = """
-                    SELECT ow FROM Owner ow WHERE ow.email = :email
+                    SELECT ow FROM Owner ow WHERE ow.email LIKE :email
                     """;
             List<Owner> resultList = session.createQuery(selectExample3, Owner.class)
                     .setParameter("email", "stefan@zajavka.pl")
+                    .getResultList();
+
+            session.getTransaction().commit();
+            return resultList;
+        }
+    }
+
+    List<Owner> selectExample4() {
+        try (Session session = HibernateUtil.getSession()) {
+            if (Objects.isNull(session)) {
+                throw new RuntimeException("Session is null");
+            }
+            session.beginTransaction();
+
+            String selectExample3 = """
+                    SELECT ow FROM Owner ow ORDER BY ow.email ASC, ow.name DESC
+                    """;
+            List<Owner> resultList = session.createQuery(selectExample3, Owner.class)
+                    .getResultList();
+
+            session.getTransaction().commit();
+            return resultList;
+        }
+    }
+
+    List<Owner> selectExample5() {
+        try (Session session = HibernateUtil.getSession()) {
+            if (Objects.isNull(session)) {
+                throw new RuntimeException("Session is null");
+            }
+            session.beginTransaction();
+
+            String select5_1 = """
+                    SELECT ow FROM Owner ow ORDER BY ow.email DESC
+                    """;
+            List<Owner> resultList = session.createQuery(select5_1, Owner.class)
+                    .setFirstResult(0)
                     .getResultList();
 
             session.getTransaction().commit();

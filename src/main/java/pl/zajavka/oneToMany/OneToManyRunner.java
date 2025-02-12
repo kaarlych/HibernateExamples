@@ -10,8 +10,8 @@ public class OneToManyRunner {
 
         OwnerRepository ownerRepository = new OwnerRepository();
 
-        ownerRepository.selectExample2()
-                .forEach(owner -> System.out.println("###Entity: " + owner));
+        ownerRepository.selectExample4()
+                        .forEach(owner -> System.out.println("###Entity: " + owner));
 
         HibernateUtil.closeSessionFactory();
 
