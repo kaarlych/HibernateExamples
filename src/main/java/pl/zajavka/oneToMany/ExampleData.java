@@ -97,4 +97,20 @@ public class ExampleData {
                 .breed(Breed.DOG)
                 .build();
     }
+
+    public static Toy someToy1() {
+        return null;
+    }
+
+    public static Toy someToy2() {
+        return null;
+    }
+
+    public static Toy someToy3() {
+        return null;
+    }
+
+    public static Toy someToy4() {
+        return null;
+    }
 }

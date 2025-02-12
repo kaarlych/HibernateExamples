@@ -312,4 +312,44 @@ public class OwnerRepository {
             session.getTransaction().commit();
         }
     }
+
+    void saveTestData() {
+        try (Session session = HibernateUtil.getSession()) {
+            if (Objects.isNull(session)) {
+                throw new RuntimeException("Session is null");
+            }
+            session.beginTransaction();
+
+            //toy creation and saving
+            Toy toy1 = ExampleData.someToy1();
+            Toy toy2 = ExampleData.someToy2();
+            Toy toy3 = ExampleData.someToy3();
+            Toy toy4 = ExampleData.someToy4();
+            session.persist(toy1);
+            session.persist(toy2);
+            session.persist(toy3);
+            session.persist(toy4);
+
+            //Pet creation and saving
+            Pet pet1 = ExampleData.somePet1();
+            Pet pet2 = ExampleData.somePet2();
+            Pet pet3 = ExampleData.somePet3();
+            Pet pet4 = ExampleData.somePet4();
+            pet1.setToys(Set.of(toy1, toy2));
+            pet2.setToys(Set.of(toy3, toy4));
+            pet3.setToys(Set.of(toy1, toy2, toy3));
+            pet3.setToys(Set.of(toy2, toy3, toy4));
+
+            //Owner creation and saving
+            Owner owner1 = ExampleData.someOwner1();
+            Owner owner2 = ExampleData.someOwner2();
+            owner1.setPets(Set.of(pet1, pet2));
+            owner2.setPets(Set.of(pet3, pet4));
+            owner1.getPets().forEach(pet -> pet.setOwner(owner1));
+            owner2.getPets().forEach(pet -> pet.setOwner(owner2));
+            session.persist(owner1);
+            session.persist(owner2);
+            session.getTransaction().commit();
+        }
+    }
 }
