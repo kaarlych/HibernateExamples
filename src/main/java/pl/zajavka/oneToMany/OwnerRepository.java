@@ -296,4 +296,20 @@ public class OwnerRepository {
             return resultList;
         }
     }
+
+    void selectExample7() {
+        try (Session session = HibernateUtil.getSession()) {
+            if (Objects.isNull(session)) {
+                throw new RuntimeException("Session is null");
+            }
+            session.beginTransaction();
+
+            String select7_1 = "SELECT ow FROM Owner ow JOIN FETCH ow.pets pt";
+            session.createQuery(select7_1, Owner.class)
+                            .getResultList()
+                                    .forEach(entity -> System.out.println("###Entity: " + entity));
+
+            session.getTransaction().commit();
+        }
+    }
 }

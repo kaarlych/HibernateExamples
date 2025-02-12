@@ -2,16 +2,31 @@ package pl.zajavka.oneToMany;
 
 import pl.zajavka.HibernateUtil;
 
-import java.util.Arrays;
+import java.util.Set;
+
+import static pl.zajavka.oneToMany.ExampleData.*;
 
 public class OneToManyRunner {
 
     public static void main(String[] args) {
 
         OwnerRepository ownerRepository = new OwnerRepository();
+        PetRepository petRepository = new PetRepository();
 
-        ownerRepository.selectExample4()
-                        .forEach(owner -> System.out.println("###Entity: " + owner));
+        ownerRepository.selectExample7();
+
+//        ownerRepository.deleteAll();
+//        petRepository.deleteAll();
+//
+//        ownerRepository.insertData(someOwner1(), Set.of(somePet1(), somePet2()));
+//        ownerRepository.insertData(someOwner2(), Set.of(somePet3(), somePet4()));
+//        ownerRepository.insertData(someOwner3(), Set.of());
+//        ownerRepository.insertData(someOwner4(), Set.of());
+//        ownerRepository.insertData(someOwner5(), Set.of());
+//        ownerRepository.insertData(someOwner6(), Set.of());
+//
+//        petRepository.insertData(somePet5());
+//        petRepository.insertData(somePet6());
 
         HibernateUtil.closeSessionFactory();
 
