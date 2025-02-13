@@ -13,6 +13,18 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "owner")
+@NamedQueries(
+        {
+        @NamedQuery(
+                name = "Owner.findAll",
+                query = "FROM Owner"
+        ),
+        @NamedQuery(
+                name = "Owner.findOwnerByEmail",
+                query = "FROM Owner WHERE email = :email"
+        )
+        }
+)
 public class Owner {
 
     @Id
