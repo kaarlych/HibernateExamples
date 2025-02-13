@@ -27,7 +27,7 @@ public class HibernateUtil {
             Map.entry(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect"),
             Map.entry(Environment.HBM2DDL_AUTO, "none"),
             Map.entry(Environment.SHOW_SQL, true),
-            Map.entry(Environment.FORMAT_SQL, false)
+            Map.entry(Environment.FORMAT_SQL, true)
     );
 
     // junction table

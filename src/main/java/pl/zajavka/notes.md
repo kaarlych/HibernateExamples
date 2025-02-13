@@ -18,11 +18,17 @@ Zapytania na bazie danych:
 
          DTO - Data Transfer objects
 
-#MECHANIZM PAGINACJI
+### MECHANIZM PAGINACJI
 
-#Named queries
+### Named queries
 - pomaga w grupowaniu zapytan hql w jednym miejscu
 - w efekcie mamy czystszy kod
 - adnotacja @NamedQuery
+
+### FetchMode
+- ustawienie tego parametru ma wplyw na wydajnosc aplikacji
+- mechanizm z Hibernate
+- okresla jak hibernate ma dociagnac encje podprzedne 
 - 
+
 

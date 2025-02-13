@@ -2,6 +2,8 @@ package pl.zajavka.oneToMany;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.Set;
 
@@ -45,6 +47,7 @@ public class Owner {
     private String email;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "owner", cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SELECT)
     private Set<Pet> pets;
 
     public void removePet(final Pet pet) {
