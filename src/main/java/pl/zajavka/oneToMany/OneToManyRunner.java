@@ -13,7 +13,7 @@ public class OneToManyRunner {
         OwnerRepository ownerRepository = new OwnerRepository();
         PetRepository petRepository = new PetRepository();
 
-        ownerRepository.selectExample7();
+        ownerRepository.selectExample8();
 
 //        ownerRepository.deleteAll();
 //        petRepository.deleteAll();

@@ -11,6 +11,7 @@ import pl.zajavka.manyToMany.Employee;
 import pl.zajavka.manyToMany.Project;
 import pl.zajavka.oneToMany.Owner;
 import pl.zajavka.oneToMany.Pet;
+import pl.zajavka.oneToMany.Toy;
 import pl.zajavka.oneToOne.Address;
 import pl.zajavka.oneToOne.Customer;
 
@@ -44,6 +45,7 @@ public class HibernateUtil {
                     .addAnnotatedClass(Address.class)
                     .addAnnotatedClass(Owner.class)
                     .addAnnotatedClass(Pet.class)
+                    .addAnnotatedClass(Toy.class)
                     .addAnnotatedClass(Employee.class)
                     .addAnnotatedClass(Project.class)
                     .getMetadataBuilder()

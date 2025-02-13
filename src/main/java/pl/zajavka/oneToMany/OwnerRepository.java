@@ -313,6 +313,46 @@ public class OwnerRepository {
         }
     }
 
+    void selectExample8() {
+        try (Session session = HibernateUtil.getSession()) {
+            if (Objects.isNull(session)) {
+                throw new RuntimeException("Session is null");
+            }
+            session.beginTransaction();
+
+            String select8 = """
+                    SELECT ow FROM Owner ow
+                    INNER JOIN FETCH ow.pets pt
+                    INNER JOIN FETCH pt.toys ts
+                    """;
+
+            session.createQuery(select8, Owner.class)
+                            .getResultList()
+                                    .forEach(entity -> System.out.println("###Entity: " + entity));
+
+            session.getTransaction().commit();
+        }
+    }
+
+    void selectExample9() {
+        try (Session session = HibernateUtil.getSession()) {
+            if (Objects.isNull(session)) {
+                throw new RuntimeException("Session is null");
+            }
+            session.beginTransaction();
+
+            String select9 = """
+                    SELECT COUNT(t.toyId) FROM Toy t
+                    """;
+
+            session.createQuery(select9, Owner.class)
+                    .getResultList()
+                    .forEach(entity -> System.out.println("###Entity: " + entity));
+
+            session.getTransaction().commit();
+        }
+    }
+
     void saveTestData() {
         try (Session session = HibernateUtil.getSession()) {
             if (Objects.isNull(session)) {

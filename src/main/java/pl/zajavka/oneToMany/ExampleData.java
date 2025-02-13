@@ -99,18 +99,30 @@ public class ExampleData {
     }
 
     public static Toy someToy1() {
-        return null;
+        return Toy.builder()
+                .what("car")
+                .color("black")
+                .build();
     }
 
     public static Toy someToy2() {
-        return null;
+        return Toy.builder()
+                .what("mascotte")
+                .color("white")
+                .build();
     }
 
     public static Toy someToy3() {
-        return null;
+        return Toy.builder()
+                .what("duckduck")
+                .color("green")
+                .build();
     }
 
     public static Toy someToy4() {
-        return null;
+        return Toy.builder()
+                .what("clown")
+                .color("yellow")
+                .build();
     }
 }
