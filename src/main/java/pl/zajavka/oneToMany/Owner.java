@@ -2,6 +2,7 @@ package pl.zajavka.oneToMany;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -47,7 +48,7 @@ public class Owner {
     private String email;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "owner", cascade = CascadeType.ALL)
-    @Fetch(value = FetchMode.SELECT)
+    @BatchSize(size = 3)
     private Set<Pet> pets;
 
     public void removePet(final Pet pet) {

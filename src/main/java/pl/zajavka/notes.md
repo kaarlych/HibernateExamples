@@ -29,6 +29,8 @@ Zapytania na bazie danych:
 - ustawienie tego parametru ma wplyw na wydajnosc aplikacji
 - mechanizm z Hibernate
 - okresla jak hibernate ma dociagnac encje podprzedne 
+
+### n+1 problem
 - 
 
 

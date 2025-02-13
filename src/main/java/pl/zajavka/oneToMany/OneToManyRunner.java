@@ -13,7 +13,7 @@ public class OneToManyRunner {
         OwnerRepository ownerRepository = new OwnerRepository();
         PetRepository petRepository = new PetRepository();
 
-        ownerRepository.selectExampleNamedQuery("adrian@zajavka.pl");
+        ownerRepository.selectExampleN1();
 
 //        ownerRepository.deleteAll();
 //        petRepository.deleteAll();
