@@ -425,4 +425,18 @@ public class OwnerRepository {
             session.getTransaction().commit();
         }
     }
+
+    void manipulateData() {
+        try (Session session = HibernateUtil.getSession()) {
+            if (Objects.isNull(session)) {
+                throw new RuntimeException("Session is null");
+            }
+            session.beginTransaction();
+
+            Set<Pet> pets = session.find(Owner.class, 8).getPets();
+            pets.forEach(pet -> pet.getToys().remove(pet.getToys().stream().findAny().get()));
+
+            session.getTransaction().commit();
+        }
+    }
 }

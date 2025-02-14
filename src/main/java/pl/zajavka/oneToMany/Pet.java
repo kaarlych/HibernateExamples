@@ -2,6 +2,8 @@ package pl.zajavka.oneToMany;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.Set;
 
@@ -31,11 +33,13 @@ public class Pet {
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "pet_toy",
             joinColumns = {@JoinColumn(name = "pet_id")},
             inverseJoinColumns = {@JoinColumn(name = "toy_id")}
     )
+
+    @Fetch(value = FetchMode.JOIN)
     private Set<Toy> toys;
 }

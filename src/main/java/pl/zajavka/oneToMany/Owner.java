@@ -49,6 +49,7 @@ public class Owner {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "owner", cascade = CascadeType.ALL)
     @BatchSize(size = 3)
+    @Fetch(FetchMode.JOIN)
     private Set<Pet> pets;
 
     public void removePet(final Pet pet) {

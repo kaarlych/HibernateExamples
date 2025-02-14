@@ -31,6 +31,13 @@ Zapytania na bazie danych:
 - okresla jak hibernate ma dociagnac encje podprzedne 
 
 ### n+1 problem
-- 
+
+### set vs list w mapowaniach
+- persistenceBag - domyslnie ustawione dla list
+- set nie przechowuje duplikatow - list przechowuje duplikaty
+- persistanceBag - nie zachowuje kolejnosci mimo ze jest implementacja listy
+- set zajmuje wiecej pamieci od listy
+- hibernetowa implementacja seta jest persistenceSet
+- stosujac set w hibernacie trzeba pamietac o equals i hashcode
 
 
