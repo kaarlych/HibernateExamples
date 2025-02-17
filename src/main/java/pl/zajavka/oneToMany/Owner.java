@@ -28,6 +28,15 @@ import java.util.Set;
         )
         }
 )
+@NamedNativeQueries(
+        {
+        @NamedNativeQuery(
+                name = "Owner.findOwnerByEmailNative",
+                query = "SELECT * FROM owner WHERE email = :email",
+                resultClass = Owner.class
+        )
+        }
+)
 public class Owner {
 
     @Id

@@ -48,3 +48,8 @@ Zapytania na bazie danych:
 - najlepiej sortowac dane na poziomie bazy danych (wydajnosc) i nie zawracac tym sobie glowy w javie
 - mapoowanie wyjatkow:
 
+### Native Query
+- natywne zapytania sql - wlasciwe sql dla danej bazy danych 
+- mechanizm ktory pozwala na wykonanie zwyklej slqki w hibernate
+- 
+

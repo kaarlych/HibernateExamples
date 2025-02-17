@@ -439,4 +439,19 @@ public class OwnerRepository {
             session.getTransaction().commit();
         }
     }
+
+    void nativeQueryExample() {
+        try (Session session = HibernateUtil.getSession()) {
+            if (Objects.isNull(session)) {
+                throw new RuntimeException("Session is null");
+            }
+            session.beginTransaction();
+
+            session.createNativeQuery("SELECT * FROM owner", Owner.class)
+                    .getResultList()
+                    .forEach(entity -> System.out.println("###Entity: " + entity));
+
+            session.getTransaction().commit();
+        }
+    }
 }
