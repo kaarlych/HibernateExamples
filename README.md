@@ -40,4 +40,7 @@ Zapytania na bazie danych:
 - hibernetowa implementacja seta jest persistenceSet
 - stosujac set w hibernacie trzeba pamietac o equals i hashcode
 
+### Eguals() and Hashcode()
+
+- 
 

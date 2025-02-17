@@ -78,4 +78,21 @@ public class CustomerRepository {
             session.getTransaction().commit();
         }
     }
+
+    void testSession(final int customerId) {
+        try (var session = HibernateUtil.getSession()) {
+            if (Objects.isNull(session)) {
+                throw new RuntimeException("Session is null");
+            }
+            session.beginTransaction();
+
+            Customer customer1 = session.find(Customer.class, customerId);
+            Customer customer2 = session.find(Customer.class, customerId);
+
+            System.out.println("c1 == c2: " + (customer1 == customer2));
+            System.out.println("c1.equals(c2): " + customer1.equals(customer2));
+
+            session.getTransaction().commit();
+        }
+    }
 }

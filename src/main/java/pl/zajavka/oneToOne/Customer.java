@@ -1,12 +1,12 @@
 package pl.zajavka.oneToOne;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode(of = "email")
 @Entity
 @Builder
 @NoArgsConstructor
