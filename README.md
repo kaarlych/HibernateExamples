@@ -42,5 +42,9 @@ Zapytania na bazie danych:
 
 ### Eguals() and Hashcode()
 
-- 
+### Sortowanie 
+- order by w hqlce
+- @OrderBy("nazwa_kolumny")
+- najlepiej sortowac dane na poziomie bazy danych (wydajnosc) i nie zawracac tym sobie glowy w javie
+- mapoowanie wyjatkow:
 

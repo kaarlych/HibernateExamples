@@ -1,7 +1,10 @@
 package pl.zajavka.oneToOne;
 
+import jakarta.persistence.PersistenceException;
+import org.hibernate.JDBCException;
 import pl.zajavka.HibernateUtil;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -19,6 +22,14 @@ public class CustomerRepository {
             session.getTransaction().commit();
             System.out.println("----------------------------------\n###AFTER INSERT CUSTOMER");
             return customer;
+        } catch (PersistenceException ex) {
+            JDBCException jdbcException = (JDBCException) ex.getCause();
+            System.err.println("jdbcException.getSQL()): " + jdbcException.getSQL());
+            System.err.println("jdbcException.getSQLState()): " + jdbcException.getSQLState());
+            SQLException sqlException = jdbcException.getSQLException();
+            System.err.println("sqlException.getErrorCode()): " + sqlException.getErrorCode());
+            System.err.println("sqlException.getMessage()): " + sqlException.getMessage());
+            return null;
         }
     }
 
