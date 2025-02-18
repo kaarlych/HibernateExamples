@@ -1,10 +1,7 @@
 package pl.zajavka.oneToOne;
 
 import jakarta.persistence.PersistenceException;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.ParameterExpression;
-import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.*;
 import org.hibernate.JDBCException;
 import org.hibernate.query.Query;
 import pl.zajavka.HibernateUtil;
@@ -124,13 +121,10 @@ public class CustomerRepository {
             CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
             CriteriaQuery<Customer> criteriaQuery = criteriaBuilder.createQuery(Customer.class);
             Root<Customer> root = criteriaQuery.from(Customer.class);
-            ParameterExpression<String> parameter1 = criteriaBuilder.parameter(String.class);
+            root.join("address", JoinType.LEFT);
 
-
-            criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("email"), parameter1));
 
             Query<Customer> query = session.createQuery(criteriaQuery);
-            query.setParameter(parameter1, "adrian@zajavka.pl ");
             List<Customer> resultList = query.getResultList();
             System.out.println("### After Criteria --------------------------------");
             resultList.forEach(entity -> System.out.println("###Entity: " + entity));
