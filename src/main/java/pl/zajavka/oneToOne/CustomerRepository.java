@@ -1,7 +1,12 @@
 package pl.zajavka.oneToOne;
 
 import jakarta.persistence.PersistenceException;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.ParameterExpression;
+import jakarta.persistence.criteria.Root;
 import org.hibernate.JDBCException;
+import org.hibernate.query.Query;
 import pl.zajavka.HibernateUtil;
 
 import java.sql.SQLException;
@@ -51,7 +56,7 @@ public class CustomerRepository {
             if (Objects.isNull(session)) {
                 throw new RuntimeException("Session is null");
             }
-           return Optional.ofNullable(session.find(Customer.class, id));
+            return Optional.ofNullable(session.find(Customer.class, id));
         }
     }
 
@@ -106,4 +111,32 @@ public class CustomerRepository {
             session.getTransaction().commit();
         }
     }
+
+    void criteriaExample() {
+        try (var session = HibernateUtil.getSession()) {
+            if (Objects.isNull(session)) {
+                throw new RuntimeException("Session is null");
+            }
+            session.beginTransaction();
+
+            System.out.println("### Before Criteria --------------------------------");
+
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<Customer> criteriaQuery = criteriaBuilder.createQuery(Customer.class);
+            Root<Customer> root = criteriaQuery.from(Customer.class);
+            ParameterExpression<String> parameter1 = criteriaBuilder.parameter(String.class);
+
+
+            criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("email"), parameter1));
+
+            Query<Customer> query = session.createQuery(criteriaQuery);
+            query.setParameter(parameter1, "adrian@zajavka.pl ");
+            List<Customer> resultList = query.getResultList();
+            System.out.println("### After Criteria --------------------------------");
+            resultList.forEach(entity -> System.out.println("###Entity: " + entity));
+
+            session.getTransaction().commit();
+        }
+    }
 }
+

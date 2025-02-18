@@ -32,6 +32,10 @@ Zapytania na bazie danych:
 - okresla jak hibernate ma dociagnac encje podprzedne 
 
 ### n+1 problem
+- najczesciej pojawia sie w relacji one-to-many
+- polega na tym ze hibernate pobiera dane z bazy w n+1 zapytaniach
+- n+1 zapytan - 1 zapytanie na glowna encje i n zapytan na encje podrzedne
+- rozwiazanie: fetchmode, fetch, batchsize
 
 ### set vs list w mapowaniach
 - persistenceBag - domyslnie ustawione dla list
@@ -52,5 +56,10 @@ Zapytania na bazie danych:
 ### Native Query
 - natywne zapytania sql - wlasciwe sql dla danej bazy danych 
 - mechanizm ktory pozwala na wykonanie zwyklej slqki w hibernate
-- 
+
+### Criteria API
+- obiekt Criteria Query na ktorym bedziemy okreslali rozne filtry
+- Od Hibernate 5.x Criteria API jest zdeprecjonowane
+- Tworcy Hibernate zdecydowali na tworzenie wlasnego Criteria API
+- Zapytania zorientowane obiektowo
 
