@@ -35,7 +35,7 @@ public class CustomerRepository {
         }
     }
 
-    List<Customer> findAllCustomers() {
+    List<Customer> listCustomers() {
         try (var session = HibernateUtil.getSession()) {
             if (Objects.isNull(session)) {
                 throw new RuntimeException("Session is null");

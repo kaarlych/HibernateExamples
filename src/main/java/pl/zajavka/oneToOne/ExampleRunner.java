@@ -11,6 +11,9 @@ public class ExampleRunner {
         Customer customer1 = customerRepository.insertCustomer(ExampleData.someCustomer1());
         Customer customer2 = customerRepository.insertCustomer(ExampleData.someCustomer2());
 
+        customerRepository.listCustomers()
+                .forEach(customer -> System.out.println("###Customer listing: " + customer));
+
 //        customerRepository.getCustomer(customer1.getId()).orElseThrow();
 //        customerRepository.getCustomer(customer2.getId()).orElseThrow();
 //

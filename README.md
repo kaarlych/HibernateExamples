@@ -63,3 +63,13 @@ Zapytania na bazie danych:
 - Tworcy Hibernate zdecydowali na tworzenie wlasnego Criteria API
 - Zapytania zorientowane obiektowo
 
+### Connection Pool
+- cache of database connections maintained so that the connections can be reused when required
+- HikariCP - najlepszy connection pool
+- chodzi o to zeby nie otwierac co chwila nowego polaczenia do bazy danych tylko jest pewna pula
+- tworzymy polaczenie i wrzucamy do worka i potem wyciagamy je z worka
+- polaczen do bazy danych moze byc wiecej niz jedno - zaleznie od ilosci watkow
+- troche podobnie jak Stringpool
+- oszczednosc czasu i zasobow
+- 
+
