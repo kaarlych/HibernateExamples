@@ -82,7 +82,7 @@ Zapytania na bazie danych:
 - kazdy obiekt session na swoj first level cache
 - 1LC jest na sztywno zwiazany z session
 
-### First Level Cache
+### -> First Level Cache
 - jest domyslnie wlaczony i nie mozna go wylaczyc 
 - obejmuje jedna sesje po zamknieciu sesji obiekty znikaja z pamieci 
 - Hibernate nie pozwala na zapisanie obiektu wiecej niz jeden raz
@@ -90,4 +90,16 @@ Zapytania na bazie danych:
 - caly 1LC mozna usunac przy uzyciu metody clear() na obiekcie session
 - evic() - usuwa obiekt z 1LC
 - clear() - usuwa caly 1LC
+
+### -> Second Level Cache
+- cache na poziomie aplikacji
+- cache jest wspoldzielony przez wszystkie sesje
+- mozna go wylaczyc
+- cache jest zalezny od dostawcy
+- interfejs RegionFactory - java specyfikuje interfejsy ale trzeba go zaimplementowac 
+- jednym z dostawcow jest ehcache
+- cache mozna konfigurowac w pliku xml
+- adnotacje @Cache i @Cachable - Enable Selective - domyslnie zalecana
+- Disable selective - @Cache(usage = CacheConcurrencyStrategy.NONE)
+- 
 
