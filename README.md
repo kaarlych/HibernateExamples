@@ -71,5 +71,23 @@ Zapytania na bazie danych:
 - polaczen do bazy danych moze byc wiecej niz jedno - zaleznie od ilosci watkow
 - troche podobnie jak Stringpool
 - oszczednosc czasu i zasobow
-- 
+
+### Cachowanie w Hibernate
+- first level cache & second level cache
+- cache - hardware or software component that stores data so that future requests for that data can be served faster
+- cache jest po to zeby nie ladowac danych z bazy danych za kazdym razem
+- first level cache jest wlaczony domyslne w hibernate -nie trzeba nic robic 
+- nie da sie go wylaczyc - jest to cache na poziomie sesji
+- second level cache - cache na poziomie aplikacji
+- kazdy obiekt session na swoj first level cache
+- 1LC jest na sztywno zwiazany z session
+
+### First Level Cache
+- jest domyslnie wlaczony i nie mozna go wylaczyc 
+- obejmuje jedna sesje po zamknieciu sesji obiekty znikaja z pamieci 
+- Hibernate nie pozwala na zapisanie obiektu wiecej niz jeden raz
+- jezeli w tej samej sesji pytamy 2 razy o ten sam obiekt to Hibernate zaladuje encje z first level cache
+- caly 1LC mozna usunac przy uzyciu metody clear() na obiekcie session
+- evic() - usuwa obiekt z 1LC
+- clear() - usuwa caly 1LC
 

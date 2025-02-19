@@ -7,7 +7,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
-import pl.zajavka.manyToMany.Employee;
+import pl.zajavka.cache.CachedEmployee;
 import pl.zajavka.manyToMany.Project;
 import pl.zajavka.oneToMany.Owner;
 import pl.zajavka.oneToMany.Pet;
@@ -28,7 +28,7 @@ public class HibernateUtil {
             Map.entry(Environment.CONNECTION_PROVIDER, "org.hibernate.hikaricp.internal.HikariCPConnectionProvider"),
             Map.entry(Environment.HBM2DDL_AUTO, "none"),
             Map.entry(Environment.SHOW_SQL, true),
-            Map.entry(Environment.FORMAT_SQL, false)
+            Map.entry(Environment.FORMAT_SQL, true)
     );
 
     private static final Map<String, Object> HIKARI_CP_SETTINGS = Map.ofEntries(
@@ -53,7 +53,8 @@ public class HibernateUtil {
                     .addAnnotatedClass(Owner.class)
                     .addAnnotatedClass(Pet.class)
                     .addAnnotatedClass(Toy.class)
-                    .addAnnotatedClass(Employee.class)
+                    .addAnnotatedClass(pl.zajavka.manyToMany.Employee.class)
+                    .addAnnotatedClass(CachedEmployee.class)
                     .addAnnotatedClass(Project.class)
                     .getMetadataBuilder()
                     .build();

@@ -28,7 +28,7 @@ public class EmployeeRepository {
                 throw new RuntimeException("Session is null");
             }
             session.beginTransaction();
-            String query = "SELECT emp FROM Employee emp";
+            String query = "SELECT emp FROM CachedEmployee emp";
             List<Employee> employees = session.createQuery(query, Employee.class).getResultList();
             session.getTransaction().commit();
             return employees;
@@ -75,7 +75,7 @@ public class EmployeeRepository {
                 throw new RuntimeException("Session is null");
             }
             session.beginTransaction();
-            String query = "SELECT emp FROM Employee emp";
+            String query = "SELECT emp FROM CachedEmployee emp";
             session.createQuery(query, Employee.class).getResultList().forEach(session::remove);
             session.getTransaction().commit();
         }
