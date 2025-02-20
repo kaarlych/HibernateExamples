@@ -121,5 +121,25 @@ Zapytania na bazie danych:
 - wersjonowanie - dodanie kolumny wersji do tabeli
 - wersjonowanie jest domyslnie wylaczone
 - wersjonowanie jest wlaczone przez adnotacje @Version
+- tutaj jest numerek o weryfikacji czy ktos juz przed nami nie zmienil danych
+
+### -> Pessimistic Locking
+- zaklada ze konflikty sa mozliwe i beda wystepowac czesto
+- zablokowanie zasobu na wylacznosc
+- blokowanie dostepu do danych drugiemu uzytkownikowi az pierwszy skonczy swoje dzialanie
+- ten drugi uzytkownik musi poczekac az drugi skonczy 
+- pesimistic locking jest jak toitoi - jak jedna osoba wejdzie to inne musza poczekac az sie toitoi zwolni 
+
+### -> Optimistic vs Pessimistic Locking
+- uzytkownicy nie lubia czekac w aplikacjach internetowych
+- najwieksza wada pessimistic locking jest to ze uzytkownicy musza czekac
+- optimistic locking jest lepszy w aplikacjach internetowych
+- zjawisko dead locka - sytuacja w ktorej dwa watki czekaja na siebie nawzajem
+- pessimistic locking moze doprowadzic do dead locka - tzw. waskie gardlo 
+- moze dojsc do niezwolnienia zasobu i wtedy aplikacja sie zacina
+- czesciej uzywa sie optimistic locking 
+
+### -> Timeout
+- w praktyce ustawia sie timeout zeby osoby czekajace na zasoby nie czekaly wiecznosc
 - 
 

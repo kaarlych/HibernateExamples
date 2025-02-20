@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import pl.zajavka.HibernateUtil;
 
 import java.time.OffsetDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EventRepository {
 
@@ -51,7 +53,9 @@ public class EventRepository {
             session.beginTransaction();
 
             EventEntity eventEntity = session.get(EventEntity.class, eventId);
-            session.lock(eventEntity, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
+            Map<String, Object> properties = new HashMap<>();
+            properties.put("javax.persistence.lock.timeout", 1000L);
+            session.lock(eventEntity, LockModeType.PESSIMISTIC_WRITE, properties);
             if (eventEntity.getCapacity() <= eventEntity.getTickets().size()) {
                 throw new RuntimeException("No more tickets available");
             }
