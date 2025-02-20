@@ -101,5 +101,19 @@ Zapytania na bazie danych:
 - cache mozna konfigurowac w pliku xml
 - adnotacje @Cache i @Cachable - Enable Selective - domyslnie zalecana
 - Disable selective - @Cache(usage = CacheConcurrencyStrategy.NONE)
+
+### -> Locki bazodanowe
+- database lock/database concurrency control
+- locki w bazie danych - mechanizm blokowania wierszy w bazie danych
+- locki w hibernate - mechanizm blokowania obiektow w hibernate
+- locki w hibernate sa zalezne od dostawcy
+- tematyka zwiazana z concurrency
+- concurrency - wspolbieznosc - wielowatkowosc
+- optimistic locking - optymistyczne blokowanie
+- pessimistic locking - pesymistyczne blokowanie
+- lock bazodanowy - mechanizm pozwalajacy na blokowanie danych w bazie danych
+- kazdy uzytkownik strony internetowej ma swoja sesje bazodanowa
+- jezeli wielu uzytkownikow dokonuje zmiany na danych to tylko jeden uzytkownik bedzie w stanie je zmienic 
+- hibernate obsluguje dwa rodzaje lockingu - optimistic oraz pessimistic
 - 
 

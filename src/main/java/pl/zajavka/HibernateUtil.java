@@ -9,6 +9,8 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.stat.Statistics;
 import pl.zajavka.cache.CachedEmployee;
+import pl.zajavka.locks.EventEntity;
+import pl.zajavka.locks.TicketEntity;
 import pl.zajavka.manyToMany.Employee;
 import pl.zajavka.manyToMany.Project;
 import pl.zajavka.oneToMany.Owner;
@@ -67,6 +69,8 @@ public class HibernateUtil {
                     .addAnnotatedClass(Employee.class)
                     .addAnnotatedClass(CachedEmployee.class)
                     .addAnnotatedClass(Project.class)
+                    .addAnnotatedClass(EventEntity.class)
+                    .addAnnotatedClass(TicketEntity.class)
                     .getMetadataBuilder()
                     .build();
 
