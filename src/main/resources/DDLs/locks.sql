@@ -3,6 +3,7 @@ create table event (
     event_name VARCHAR(50) NOT NULL,
     date_time TIMESTAMP WITH TIME ZONE NOT NULL,
     capacity INTEGER NOT NULL,
+    version INTEGER NOT NULL,
     primary key(event_id),
     unique (event_name)
 );

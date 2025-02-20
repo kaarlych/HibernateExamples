@@ -115,5 +115,11 @@ Zapytania na bazie danych:
 - kazdy uzytkownik strony internetowej ma swoja sesje bazodanowa
 - jezeli wielu uzytkownikow dokonuje zmiany na danych to tylko jeden uzytkownik bedzie w stanie je zmienic 
 - hibernate obsluguje dwa rodzaje lockingu - optimistic oraz pessimistic
+
+### -> Optimistic Locking
+- zaklada ze konflikty sa mozliwe ale beda wystepowac rzadko
+- wersjonowanie - dodanie kolumny wersji do tabeli
+- wersjonowanie jest domyslnie wylaczone
+- wersjonowanie jest wlaczone przez adnotacje @Version
 - 
 

@@ -32,6 +32,9 @@ public class EventEntity {
     @OneToMany(mappedBy = "event")
     private Set<TicketEntity> tickets;
 
+    @Version
+    private Long version;
+
     public void addTicket(TicketEntity ticket) {
         ticket.setEvent(this);
         getTickets().add(ticket);

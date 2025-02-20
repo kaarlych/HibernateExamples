@@ -1,9 +1,12 @@
 package pl.zajavka.locks;
 
+import jakarta.persistence.LockModeType;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaDelete;
 import org.hibernate.Session;
 import pl.zajavka.HibernateUtil;
+
+import java.time.OffsetDateTime;
 
 public class EventRepository {
 
@@ -48,6 +51,7 @@ public class EventRepository {
             session.beginTransaction();
 
             EventEntity eventEntity = session.get(EventEntity.class, eventId);
+            session.lock(eventEntity, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
             if (eventEntity.getCapacity() <= eventEntity.getTickets().size()) {
                 throw new RuntimeException("No more tickets available");
             }
@@ -59,6 +63,20 @@ public class EventRepository {
 
             eventEntity.addTicket(ticketEntity);
             session.persist(ticketEntity);
+
+            session.getTransaction().commit();
+        }
+    }
+
+    void changeDateTime(OffsetDateTime newDateTime, Long eventId) {
+        try (Session session = HibernateUtil.getSession()) {
+            if (session == null) {
+                throw new RuntimeException("Session is null");
+            }
+            session.beginTransaction();
+
+            EventEntity eventEntity = session.find(EventEntity.class, eventId);
+            eventEntity.setDateTime(newDateTime);
 
             session.getTransaction().commit();
         }
